@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:title="dashboard"
+        android:icon="@android:drawable/btn_dialog"/>
+    <item
+        android:id="@+id/navigation_home"
+        android:title="menu"
+        android:icon="@android:drawable/btn_default_small"/>
+    <item
+        android:id="@+id/secondActivity"
+        android:title="SecondActivity"
+        android:icon="@android:drawable/sym_def_app_icon"
+        />
+</menu>
