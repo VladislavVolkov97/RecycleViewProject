@@ -6,8 +6,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,6 +54,7 @@ public class AuthAppRepository {
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     public void login(String email, String password) {
+        System.out.println(context+"!!!!!!!!!!!!!!!!!!!!");
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override

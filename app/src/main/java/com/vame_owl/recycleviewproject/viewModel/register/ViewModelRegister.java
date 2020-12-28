@@ -14,6 +14,23 @@ public class ViewModelRegister extends ViewModel {
     private AuthAppRepository authAppRepository ;
     public MutableLiveData<String> email ;
     public MutableLiveData<String> password ;
+
+    public MutableLiveData<String> getEmail() {
+        return email;
+    }
+
+    public void setEmail(MutableLiveData<String> email) {
+        this.email = email;
+    }
+
+    public MutableLiveData<String> getPassword() {
+        return password;
+    }
+
+    public void setPassword(MutableLiveData<String> password) {
+        this.password = password;
+    }
+
     private Context context;
 
    public ViewModelRegister(Context context){
