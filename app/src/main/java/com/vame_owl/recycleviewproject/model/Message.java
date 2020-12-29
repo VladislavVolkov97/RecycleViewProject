@@ -56,4 +56,13 @@ public class Message {
 
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "author='" + author + '\'' +
+                ", body='" + body + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }

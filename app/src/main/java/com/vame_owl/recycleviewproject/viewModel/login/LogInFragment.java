@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import android.view.ViewGroup;
 
 import com.vame_owl.recycleviewproject.R;
 import com.vame_owl.recycleviewproject.databinding.FragmentLogInBinding;
+import com.vame_owl.recycleviewproject.model.Message;
+
+import java.util.List;
 
 
 public class LogInFragment extends Fragment {
@@ -34,6 +38,12 @@ public class LogInFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         // mainViewModel= ViewModelProviders.of(getActivity()).get(FragmentViewModel.class);
         vmLogIn   = ViewModelProviders.of(this, factory).get(ViewModelLogIn.class);
+        vmLogIn.getListOfMessages().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
+            @Override
+            public void onChanged(List<Message> messages) {
+                System.out.println(messages + "......................................");
+            }
+        });
         binding.setVariables(vmLogIn);
         //binding.button.setOnClickListener(mainViewModel::makeToast);
         binding.executePendingBindings();

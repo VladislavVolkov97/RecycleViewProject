@@ -21,7 +21,6 @@ public class RegisterFactory implements ViewModelProvider.Factory{
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        // return (T) new FragmentViewModel(application);
         if (modelClass.isAssignableFrom(ViewModelRegister.class)){
             return (T) new ViewModelRegister(context);
         }

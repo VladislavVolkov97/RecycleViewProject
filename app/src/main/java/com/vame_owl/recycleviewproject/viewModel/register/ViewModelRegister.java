@@ -35,6 +35,7 @@ public class ViewModelRegister extends ViewModel {
 
    public ViewModelRegister(Context context){
        this.context= context;
+       this.authAppRepository = new AuthAppRepository(context);
        if(this.email == null){
            this.email = new MutableLiveData<>();
        }
