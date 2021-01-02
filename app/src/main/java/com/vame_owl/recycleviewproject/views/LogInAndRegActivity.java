@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vame_owl.recycleviewproject.R;
 import com.vame_owl.recycleviewproject.databinding.ActivityLogInAndRegBinding;
 import com.vame_owl.recycleviewproject.viewModel.login.LogInFragment;
+import com.vame_owl.recycleviewproject.viewModel.mes.MessageFragment;
 import com.vame_owl.recycleviewproject.viewModel.register.RegisterFragment;
 
 public class LogInAndRegActivity extends AppCompatActivity {
@@ -38,6 +39,8 @@ public class LogInAndRegActivity extends AppCompatActivity {
                     case R.id.navigation_home:
                         fragmentManager.beginTransaction().replace(R.id.frameLayout, new LogInFragment()).commit();
                         return true;
+                    case R.id.secondActivity:
+                        fragmentManager.beginTransaction().replace(R.id.frameLayout, new MessageFragment()).commit();
                 }
                 return false;
             }
