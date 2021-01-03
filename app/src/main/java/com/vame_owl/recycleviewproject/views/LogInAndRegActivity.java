@@ -41,6 +41,7 @@ public class LogInAndRegActivity extends AppCompatActivity {
                         return true;
                     case R.id.secondActivity:
                         fragmentManager.beginTransaction().replace(R.id.frameLayout, new MessageFragment()).commit();
+                        return true;
                 }
                 return false;
             }

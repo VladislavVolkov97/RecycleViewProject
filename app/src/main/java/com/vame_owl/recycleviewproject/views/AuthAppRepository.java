@@ -20,6 +20,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.vame_owl.recycleviewproject.model.Message;
 import com.vame_owl.recycleviewproject.model.User;
 
@@ -42,10 +43,10 @@ public class AuthAppRepository {
     List<Message> listMessage = new ArrayList<Message>();
 
     public MutableLiveData<List<Message>> getMesMutableLiveData() {
-        listMessage.add(new Message("1","2","3"));
-        listMessage.add(new Message("13","2","3"));
-        listMessage.add(new Message("12","2","3"));
-        mesMutableLiveData.setValue(listMessage);
+//        listMessage.add(new Message("1","2","3"));
+//        listMessage.add(new Message("13","2","3"));
+//        listMessage.add(new Message("12","2","3"));
+//        mesMutableLiveData.setValue(listMessage);
         return mesMutableLiveData;
     }
 
@@ -81,30 +82,15 @@ public class AuthAppRepository {
                             System.out.println(userLiveData.getValue()+"user!@@@@@@@");
 
                             DatabaseReference mDatabase = getInstance().getReference("messages");
-
-                            mDatabase.addChildEventListener(new ChildEventListener() {
+                            mDatabase.addValueEventListener(new ValueEventListener() {
                                 @Override
-                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                    Message message =  snapshot.getValue(Message.class);
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                    listMessage.clear();
+                                    Message message = snapshot.getValue(Message.class);
                                     listMessage.add(message);
+
                                     mesMutableLiveData.setValue(listMessage);
-
-                                    System.out.println(message+"         aaaaaaaaaa");
-                                }
-
-                                @Override
-                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                }
-
-                                @Override
-                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                }
-
-                                @Override
-                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                                    System.out.println("!!!#############"+ listMessage);
                                 }
 
                                 @Override
@@ -112,6 +98,36 @@ public class AuthAppRepository {
 
                                 }
                             });
+//                            mDatabase.addChildEventListener(new ChildEventListener() {
+//                                @Override
+//                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                                    Message message =  snapshot.getValue(Message.class);
+//                                    listMessage.add(message);
+//                                    mesMutableLiveData.setValue(listMessage);
+//
+//                                    System.out.println(message+"         aaaaaaaaaa");
+//                                }
+//
+//                                @Override
+//                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                }
+//                            });
                             Toast.makeText(context, "LogIn Succes",Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(context, "Login Failure: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
