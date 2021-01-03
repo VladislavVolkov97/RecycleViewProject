@@ -16,6 +16,7 @@ public class ViewModelMessanger extends ViewModel {
     private AuthAppRepository authAppRepository ;
 
     public MutableLiveData<List<Message>> getListOfMessages() {
+        System.out.println(listOfMessages.getValue()+" hhhhhhhhhhhhhhhhhhhhhhh"+ "  "+ listOfMessages);
         return listOfMessages;
     }
 

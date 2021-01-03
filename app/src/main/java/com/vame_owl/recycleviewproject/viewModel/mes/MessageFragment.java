@@ -39,19 +39,20 @@ DataAdapterMessages dataAdapterMessages = new DataAdapterMessages(listMessage);
     }
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         viewModelMessanger   = ViewModelProviders.of(this, factory).get(ViewModelMessanger.class);
         binding.setAdapter(dataAdapterMessages);
         viewModelMessanger.getListOfMessages().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
-                listMessage = messages;
-                dataAdapterMessages.onChanged(listMessage);
+
+                dataAdapterMessages.onChanged(messages);
                 System.out.println(messages + "......................................");
             }
         });
 
         binding.executePendingBindings();
 
-        super.onActivityCreated(savedInstanceState);
+
     }
 }

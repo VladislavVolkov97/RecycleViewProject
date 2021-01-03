@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+>
 
 
         <TextView
@@ -20,18 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Hello"
-            android:text="hello" />
+            android:text="@{message.author}" />
 
 
         <TextView
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{message.time}"
 
             android:padding="10dp" />
 
         <TextView
             android:id="@+id/time"
+            android:text="@{message.body}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp" />

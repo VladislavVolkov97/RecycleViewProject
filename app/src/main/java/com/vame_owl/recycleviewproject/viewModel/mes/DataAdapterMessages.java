@@ -56,7 +56,7 @@ public class DataAdapterMessages extends RecyclerView.Adapter<DataAdapterMessage
     public class ViewHolder extends RecyclerView.ViewHolder {
         ListItemBinding binding;
 
-        ViewHolder(View view){
+       public ViewHolder(View view){
             super(view);
             binding = DataBindingUtil.bind(view);
 
@@ -64,6 +64,7 @@ public class DataAdapterMessages extends RecyclerView.Adapter<DataAdapterMessage
         public void bind(Object o){
 
             binding.setVariable(BR.message,o);
+            binding.executePendingBindings();
 
         }
     }

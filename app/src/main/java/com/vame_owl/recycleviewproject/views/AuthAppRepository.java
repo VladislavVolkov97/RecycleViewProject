@@ -42,6 +42,10 @@ public class AuthAppRepository {
     List<Message> listMessage = new ArrayList<Message>();
 
     public MutableLiveData<List<Message>> getMesMutableLiveData() {
+        listMessage.add(new Message("1","2","3"));
+        listMessage.add(new Message("13","2","3"));
+        listMessage.add(new Message("12","2","3"));
+        mesMutableLiveData.setValue(listMessage);
         return mesMutableLiveData;
     }
 
