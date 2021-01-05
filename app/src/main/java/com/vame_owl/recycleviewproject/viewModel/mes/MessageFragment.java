@@ -1,5 +1,6 @@
 package com.vame_owl.recycleviewproject.viewModel.mes;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class MessageFragment extends Fragment {
         FragmentMessageBinding binding;
+        Context context;
         ViewModelMessanger viewModelMessanger;
         MessangerFactory factory;
         List<Message> listMessage= new ArrayList<>();
@@ -41,6 +43,7 @@ DataAdapterMessages dataAdapterMessages = new DataAdapterMessages(listMessage);
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModelMessanger   = ViewModelProviders.of(this, factory).get(ViewModelMessanger.class);
+
         binding.setAdapter(dataAdapterMessages);
         viewModelMessanger.getListOfMessages().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
             @Override

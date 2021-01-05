@@ -20,11 +20,14 @@ public class ViewModelMessanger extends ViewModel {
         return listOfMessages;
     }
 
-    ViewModelMessanger(Context context){
+   public ViewModelMessanger(Context context){
         this.context = context;
         this.authAppRepository = new AuthAppRepository(context);
         this.listOfMessages =  authAppRepository.getMesMutableLiveData();
+
+
     }
+
 
 
 }

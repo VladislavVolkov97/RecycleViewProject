@@ -35,20 +35,23 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 public class AuthAppRepository {
     private Context context;
+    DatabaseReference mDatabase;
 
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<FirebaseUser> userLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
-    private MutableLiveData<List<Message>> mesMutableLiveData= new MutableLiveData<>();
+    private MutableLiveData<List<Message>> mesMutableLiveData;
+    private MutableLiveData<List<Message>> mesMutableLiveData2;
     List<Message> listMessage = new ArrayList<Message>();
 
-    public MutableLiveData<List<Message>> getMesMutableLiveData() {
-//        listMessage.add(new Message("1","2","3"));
-//        listMessage.add(new Message("13","2","3"));
-//        listMessage.add(new Message("12","2","3"));
-//        mesMutableLiveData.setValue(listMessage);
-        return mesMutableLiveData;
-    }
+//    public MutableLiveData<List<Message>> getMesMutableLiveData() {
+////        listMessage.add(new Message("1","2","3"));
+////        listMessage.add(new Message("13","2","3"));
+////        listMessage.add(new Message("12","2","3"));
+////        mesMutableLiveData.setValue(listMessage);
+//        System.out.println(mesMutableLiveData.getValue()+",,,,,,,,,,,,,,,,,,,,,,,,,,,");
+//        return mesMutableLiveData;
+//    }
 
     public List<Message> getListMessage() {
         return listMessage;
@@ -59,7 +62,10 @@ public class AuthAppRepository {
         this.firebaseAuth = FirebaseAuth.getInstance();
         this.userLiveData = new MutableLiveData<>();
         this.loggedOutLiveData = new MutableLiveData<>();
+        this.mesMutableLiveData =  new MutableLiveData<>();
 
+
+        this.mesMutableLiveData2 =  new MutableLiveData<>();
 
         if (firebaseAuth.getCurrentUser() != null) {
             userLiveData.postValue(firebaseAuth.getCurrentUser());
@@ -81,23 +87,33 @@ public class AuthAppRepository {
                             System.out.println(context + "succes");
                             System.out.println(userLiveData.getValue()+"user!@@@@@@@");
 
-                            DatabaseReference mDatabase = getInstance().getReference("messages");
-                            mDatabase.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                    listMessage.clear();
-                                    Message message = snapshot.getValue(Message.class);
-                                    listMessage.add(message);
+                            mDatabase = getInstance().getReference("messages");
+                           mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                               @Override
+                               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                 //  Message message =  snapshot.child(uiId).getValue(Message.class);
+                                //   Message message = snapshot.getValue(Message.class);
+                                   listMessage.clear();
+                                   for (DataSnapshot dataSnapshot: snapshot.getChildren()
+                                        ) {
 
-                                    mesMutableLiveData.setValue(listMessage);
-                                    System.out.println("!!!#############"+ listMessage);
-                                }
+                                       listMessage.add(dataSnapshot.getValue(Message.class));
+                                   }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
+                                   mesMutableLiveData.setValue(listMessage);
+                                   System.out.println(listMessage +" ]]]]]]]]]]]]]");
+                                   System.out.println(mesMutableLiveData.getValue()+ "[[[[[[[[[[[[[[[[[[[[[[[[");
 
-                                }
-                            });
+                               }
+
+                               @Override
+                               public void onCancelled(@NonNull DatabaseError error) {
+
+                               }
+                           });
+
+
+
 //                            mDatabase.addChildEventListener(new ChildEventListener() {
 //                                @Override
 //                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -188,4 +204,18 @@ public class AuthAppRepository {
     public MutableLiveData<Boolean> getLoggedOutLiveData() {
         return loggedOutLiveData;
     }
+
+    public MutableLiveData<List<Message>> getMesMutableLiveData() {
+//        listMessage.add(new Message("1","2","3"));
+//        listMessage.add(new Message("13","2","3"));
+//        listMessage.add(new Message("12","2","3"));
+//        mesMutableLiveData.setValue(listMessage);
+     //   mesMutableLiveData.setValue(mesMutableLiveData2.getValue());
+       // System.out.println(mesMutableLiveData2 +"");
+        System.out.println(mesMutableLiveData.getValue() +" ,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+        return mesMutableLiveData;
+    }
+
+
+
 }

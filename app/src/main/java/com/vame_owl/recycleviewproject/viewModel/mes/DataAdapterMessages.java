@@ -52,12 +52,13 @@ public class DataAdapterMessages extends RecyclerView.Adapter<DataAdapterMessage
         notifyDataSetChanged();
         System.out.println("oncganged &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
-
+        //ViewHolder должен иметь сылки на все элементы разметки
     public class ViewHolder extends RecyclerView.ViewHolder {
         ListItemBinding binding;
 
        public ViewHolder(View view){
             super(view);
+            //сылки на элементы разметки получаем с помощью разметки дата бингинг
             binding = DataBindingUtil.bind(view);
 
         }
