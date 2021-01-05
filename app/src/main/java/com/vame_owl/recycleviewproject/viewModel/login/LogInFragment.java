@@ -38,12 +38,6 @@ public class LogInFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         // mainViewModel= ViewModelProviders.of(getActivity()).get(FragmentViewModel.class);
         vmLogIn   = ViewModelProviders.of(this, factory).get(ViewModelLogIn.class);
-        vmLogIn.getListOfMessages().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
-            @Override
-            public void onChanged(List<Message> messages) {
-                System.out.println(messages + "......................................");
-            }
-        });
         binding.setVariables(vmLogIn);
         //binding.button.setOnClickListener(mainViewModel::makeToast);
         binding.executePendingBindings();

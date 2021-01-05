@@ -48,7 +48,9 @@ DataAdapterMessages dataAdapterMessages = new DataAdapterMessages(listMessage);
         viewModelMessanger.getListOfMessages().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
-
+//                listMessage.add(new Message("1","2","3"));
+//                 listMessage.add(new Message("13","2","3"));
+//                 listMessage.add(new Message("12","2","3"));
                 dataAdapterMessages.onChanged(messages);
                 System.out.println(messages + "......................................");
             }

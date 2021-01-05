@@ -3,11 +3,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_dashboard"
-        android:title="dashboard"
+        android:title="Registr"
         android:icon="@android:drawable/btn_dialog"/>
     <item
         android:id="@+id/navigation_home"
-        android:title="menu"
+        android:title="Login"
         android:icon="@android:drawable/btn_default_small"/>
     <item
         android:id="@+id/secondActivity"

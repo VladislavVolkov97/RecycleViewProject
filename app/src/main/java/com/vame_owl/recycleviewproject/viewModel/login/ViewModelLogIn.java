@@ -47,7 +47,7 @@ public class ViewModelLogIn extends ViewModel {
         this.context = context;
 
         this.authAppRepository = new AuthAppRepository(context);
-        this.listOfMessages =  authAppRepository.getMesMutableLiveData();
+       // this.listOfMessages =  authAppRepository.getMesMutableLiveData();
         if(this.email == null){
         this.email = new MutableLiveData<>();
     }
