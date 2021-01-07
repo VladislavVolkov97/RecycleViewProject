@@ -33,13 +33,13 @@ public class LogInAndRegActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
-                    case R.id.navigation_dashboard:
+                    case R.id.registerMenu:
                         fragmentManager.beginTransaction().replace(R.id.frameLayout, new RegisterFragment()).commit();
                         return true;
-                    case R.id.navigation_home:
+                    case R.id.loginMenu:
                         fragmentManager.beginTransaction().replace(R.id.frameLayout, new LogInFragment()).commit();
                         return true;
-                    case R.id.secondActivity:
+                    case R.id.messangerMenu:
                         fragmentManager.beginTransaction().replace(R.id.frameLayout, new MessageFragment()).commit();
                         return true;
                 }

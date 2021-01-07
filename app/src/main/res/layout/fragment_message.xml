@@ -8,12 +8,29 @@
         <variable
             name="adapter"
             type="com.vame_owl.recycleviewproject.viewModel.mes.DataAdapterMessages" />
+        <variable
+            name="sendMessage"
+            type="com.vame_owl.recycleviewproject.viewModel.mes.ViewModelMessanger" />
 
     </data>
-<FrameLayout
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".viewModel.mes.MessageFragment">
+
+    <EditText
+        android:id="@+id/sendMessage"
+        android:text="@={sendMessage.sendMessage}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSend"
+        android:text="Click"
+        android:onClick="@{(v)->sendMessage.sendMessage(v)}"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -23,5 +40,5 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical" />
 
-</FrameLayout>
+</LinearLayout>
     </layout>

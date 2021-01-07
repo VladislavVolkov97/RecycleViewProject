@@ -2,16 +2,16 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_dashboard"
-        android:title="Registr"
+        android:id="@+id/registerMenu"
+        android:title="register"
         android:icon="@android:drawable/btn_dialog"/>
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/loginMenu"
         android:title="Login"
         android:icon="@android:drawable/btn_default_small"/>
     <item
-        android:id="@+id/secondActivity"
-        android:title="SecondActivity"
+        android:id="@+id/messangerMenu"
+        android:title="Messanger"
         android:icon="@android:drawable/sym_def_app_icon"
         />
 </menu>

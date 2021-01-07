@@ -1,6 +1,7 @@
 package com.vame_owl.recycleviewproject.viewModel.mes;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,25 +16,23 @@ public class ViewModelMessanger extends ViewModel {
     Context context;
     public MutableLiveData<List<Message>> listOfMessages;
     private AuthAppRepository authAppRepository ;
+    public MutableLiveData<String> sendMessage;
     List<Message> listMessage = new ArrayList<>();
 
     public MutableLiveData<List<Message>> getListOfMessages() {
         System.out.println(listOfMessages.getValue()+" hhhhhhhhhhhhhhhhhhhhhhh"+ "  "+ listOfMessages);
-//                listMessage.add(new Message("1","2","3"));
-//        listMessage.add(new Message("13","2","3"));
-//        listMessage.add(new Message("12","2","3"));
-//        listOfMessages.setValue(listMessage);
         return listOfMessages;
     }
 
    public ViewModelMessanger(Context context){
         this.context = context;
+        this.sendMessage = new MutableLiveData<>();
         this.authAppRepository = new AuthAppRepository(context);
         this.listOfMessages =  authAppRepository.getMesMutableLiveData();
-
-
     }
 
-
+    public void sendMessage(View view){
+        authAppRepository.addMessage(sendMessage.getValue());
+    }
 
 }

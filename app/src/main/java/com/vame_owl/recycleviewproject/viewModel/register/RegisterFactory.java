@@ -14,9 +14,7 @@ public class RegisterFactory implements ViewModelProvider.Factory{
         this.context = context;
     }
 
-//    public ViewModelFactoryEmailFragment( ) {
-//
-//    }
+
 
     @NonNull
     @Override
