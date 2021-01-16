@@ -10,20 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.vame_owl.recycleviewproject.BR;
-import com.vame_owl.recycleviewproject.R;
 import com.vame_owl.recycleviewproject.databinding.ListItemBinding;
 import com.vame_owl.recycleviewproject.model.Message;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataAdapterMessages extends RecyclerView.Adapter<DataAdapterMessages.ViewHolder>{
+public class DataAdapterMessages extends FirestoreRecyclerAdapter<Message,DataAdapterMessages.ViewHolder> {
         List<Message> listMessage = new ArrayList<>();
 
 
-    public DataAdapterMessages(List<Message> listMessage) {
-        this.listMessage.addAll(listMessage);
+    public DataAdapterMessages(@NonNull FirestoreRecyclerOptions options) {
+       super(options);
     }
 
     @NonNull
@@ -35,23 +36,10 @@ public class DataAdapterMessages extends RecyclerView.Adapter<DataAdapterMessage
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        Message message = listMessage.get(position);
-        holder.bind(message);
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Message model) {
+        holder.bind(model);
     }
 
-    @Override
-    public int getItemCount() {
-        return listMessage.size();
-    }
-    public void onChanged(List<Message> listMessage){
-        this.listMessage.clear();
-        this.listMessage.addAll(listMessage);
-
-        notifyDataSetChanged();
-        System.out.println("oncganged &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }
         //ViewHolder должен иметь сылки на все элементы разметки
     public class ViewHolder extends RecyclerView.ViewHolder {
         ListItemBinding binding;

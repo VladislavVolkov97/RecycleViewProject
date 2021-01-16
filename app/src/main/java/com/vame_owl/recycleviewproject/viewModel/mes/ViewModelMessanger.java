@@ -28,7 +28,7 @@ public class ViewModelMessanger extends ViewModel {
         this.context = context;
         this.sendMessage = new MutableLiveData<>();
         this.authAppRepository = new AuthAppRepository(context);
-        this.listOfMessages =  authAppRepository.getMesMutableLiveData();
+      //  this.listOfMessages =  authAppRepository.getMesMutableLiveData();
     }
 
     public void sendMessage(View view){

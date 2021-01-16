@@ -119,27 +119,8 @@ public class AuthAppRepository {
     }
 
     public MutableLiveData<List<Message>> getMesMutableLiveData() {
-        mDatabase = getInstance().getReference("messages");
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listMessage.clear();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()
-                ) {
-
-                    listMessage.add(dataSnapshot.getValue(Message.class));
-                }
-                mesMutableLiveData.setValue(listMessage);
-                System.out.println(listMessage +" ]]]]]]]]]]]]]");
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-//        mDatabase.addValueEventListener(new ValueEventListener() {
+//        mDatabase = getInstance().getReference("messages");
+//        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                listMessage.clear();
@@ -150,6 +131,7 @@ public class AuthAppRepository {
 //                }
 //                mesMutableLiveData.setValue(listMessage);
 //                System.out.println(listMessage +" ]]]]]]]]]]]]]");
+//
 //            }
 //
 //            @Override
@@ -157,40 +139,58 @@ public class AuthAppRepository {
 //
 //            }
 //        });
-        mDatabase.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    listMessage.add(snapshot.getValue(Message.class));
-
-                mesMutableLiveData.setValue(listMessage);
-                System.out.println(listMessage +" ]]]]]]]]]]]]]");
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    listMessage.add(snapshot.getValue(Message.class));
-
-                mesMutableLiveData.setValue(listMessage);
-                System.out.println(listMessage +" ]]]]]]]]]]]]]");
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        System.out.println(mesMutableLiveData.getValue() +" ,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+////        mDatabase.addValueEventListener(new ValueEventListener() {
+////            @Override
+////            public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                listMessage.clear();
+////                for (DataSnapshot dataSnapshot: snapshot.getChildren()
+////                ) {
+////
+////                    listMessage.add(dataSnapshot.getValue(Message.class));
+////                }
+////                mesMutableLiveData.setValue(listMessage);
+////                System.out.println(listMessage +" ]]]]]]]]]]]]]");
+////            }
+////
+////            @Override
+////            public void onCancelled(@NonNull DatabaseError error) {
+////
+////            }
+////        });
+//        mDatabase.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                    listMessage.add(snapshot.getValue(Message.class));
+//
+//                mesMutableLiveData.setValue(listMessage);
+//                System.out.println(listMessage +" ]]]]]]]]]]]]]");
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                    listMessage.add(snapshot.getValue(Message.class));
+//
+//                mesMutableLiveData.setValue(listMessage);
+//                System.out.println(listMessage +" ]]]]]]]]]]]]]");
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        System.out.println(mesMutableLiveData.getValue() +" ,,,,,,,,,,,,,,,,,,,,,,,,,,,");
         return mesMutableLiveData;
     }
 
